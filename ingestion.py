@@ -81,7 +81,7 @@ def create_vector_store(chunks: list) -> Chroma:
     similarity search during retrieval.
     """
     # Initialize the embedding model
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(model="text-embedding-ada-002")
 
     # Create (or overwrite) the ChromaDB vector store on disk
     vector_store = Chroma.from_documents(

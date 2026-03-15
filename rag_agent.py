@@ -48,7 +48,7 @@ def retrieve(state: RAGState) -> dict:
     question = state["question"]
 
     # Load the persisted ChromaDB vector store
-    embeddings = OpenAIEmbeddings()
+    embeddings = OpenAIEmbeddings(model="text-embedding-ada-002")
     vector_store = Chroma(
         persist_directory=CHROMA_DB_DIR,
         embedding_function=embeddings,
@@ -92,7 +92,7 @@ def generate(state: RAGState) -> dict:
     ])
 
     # Initialize the LLM
-    llm = ChatOpenAI(model="gpt-4o-mini", temperature=0)
+    llm = ChatOpenAI(model="gpt-4.1-mini", temperature=0)
 
     # Build the chain: prompt -> LLM
     chain = prompt | llm
